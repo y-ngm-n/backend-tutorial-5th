@@ -13,6 +13,11 @@ const process = {
         const user = new User(req.body);
         const rslt = await user.login();
         res.json(rslt);
+    },
+    register: async (req, res) => {
+        const user = new User(req.body);
+        const rslt = await user.register();
+        res.json(rslt);
     }
 };
 

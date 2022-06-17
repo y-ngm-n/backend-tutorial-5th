@@ -20,6 +20,16 @@ class User {
         return { success: false, msg: "존재하지 않는 아이디입니다." };
     }
 
+    // 회원가입 메서드 : id 중복 여부 / 파일에 데이터 추가
+    register = async () => {
+        const ids = await UserStorage.getFields(false, "id");
+        if (ids.id.includes(this.data.id)) return { success: false, msg: "이미 존재하는 아이디입니다." };
+        else {
+            UserStorage.createUser(this.data);
+            return { success: true };
+        }
+    }
+
 }
 
 

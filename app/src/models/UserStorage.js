@@ -21,6 +21,15 @@ class UserStorage {
         return part;
     }
 
+    static createUser = async (user) => {
+        const db = await this.#users;
+        db.id.push(user.id);
+        db.name.push(user.name);
+        db.pw.push(user.pw);
+        
+        fs.writeFile("./src/databases/users.json", JSON.stringify(db));
+    }
+
 }
 
 
