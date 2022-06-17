@@ -1,5 +1,7 @@
 "use strict"
 
+const User = require("../models/User");
+
 const view = {
     root: (req, res) => res.send("여기는 루트입니다."),
     login: (req, res) => res.render("login"),
@@ -7,9 +9,10 @@ const view = {
 };
 
 const process = {
-    login: (req, res) => {
-        const user = req.body;
-        console.log(user);
+    login: async (req, res) => {
+        const user = new User(req.body);
+        const rslt = await user.login();
+        res.json(rslt);
     }
 };
 
